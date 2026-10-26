@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hola desde EC2</title>
+  <style>
+    :root { font-family: Arial, Helvetica, sans-serif; color: #153042; background: #f2f6f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    main { width: min(100%, 760px); background: white; border-radius: 20px; padding: clamp(28px, 6vw, 60px); box-shadow: 0 18px 50px #13304417; }
+    .tag { display: inline-block; padding: 8px 12px; border-radius: 100px; background: #e7f5ee; color: #157350; font-size: 13px; font-weight: bold; }
+    h1 { margin: 24px 0 14px; font-size: clamp(36px, 6vw, 56px); line-height: 1.08; letter-spacing: -.04em; }
+    h1 span { color: #168566; }
+    .intro { color: #5d7180; font-size: 17px; line-height: 1.6; max-width: 570px; }
+    .divider { border: 0; border-top: 1px solid #e4ebef; margin: 34px 0; }
+    label { display: block; font-weight: bold; margin-bottom: 10px; }
+    form { display: flex; gap: 10px; }
+    input { flex: 1; min-width: 0; padding: 13px 15px; border: 1px solid #cbd8de; border-radius: 9px; font: inherit; }
+    button { padding: 13px 22px; border: 0; border-radius: 9px; background: #168566; color: white; font: inherit; font-weight: bold; cursor: pointer; }
+    button:hover { background: #106f54; }
+    #resultado { min-height: 24px; margin: 18px 0 0; color: #157350; font-weight: bold; }
+    footer { margin-top: 35px; color: #81939f; font-size: 13px; }
+    @media (max-width: 520px) { form { flex-direction: column; } button { width: 100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="tag">Frontend desplegado en la nube</span>
+    <h1>Hola desde <span>Amazon EC2</span></h1>
+    <p class="intro">Esta página fue creada en local, publicada en GitHub y servida desde una máquina virtual con Nginx.</p>
+    <hr class="divider">
+    <form id="saludo">
+      <div style="flex:1">
+        <label for="nombre">Prueba la aplicación</label>
+        <input id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre" maxlength="40" required>
+      </div>
+      <button type="submit">Saludar</button>
+    </form>
+    <p id="resultado" aria-live="polite"></p>
+    <footer>Práctica de despliegue de frontend · Servicios Cloud</footer>
+  </main>
+  <script>
+    document.getElementById("saludo").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      if (nombre) {
+        document.getElementById("resultado").textContent =
+          "¡Hola, " + nombre + "! El frontend está funcionando correctamente.";
+      }
+    });
+  </script>
+</body>
+</html>
